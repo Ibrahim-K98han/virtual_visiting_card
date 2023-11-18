@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:virtual_visiting_card/models/contact_model.dart';
+import 'package:virtual_visiting_card/providers/contact_provider.dart';
 
 class FormPage extends StatefulWidget {
   static const String routeName = '/form';
@@ -133,7 +135,7 @@ class _FormPageState extends State<FormPage> {
 
   void _saveContact() async {
     if (formKey.currentState!.validate()) {
-      final contact = ContactModel(
+      final contacts = ContactModel(
         name: nameController.text,
         mobile: mobileController.text,
         email: emailController.text,
@@ -142,6 +144,13 @@ class _FormPageState extends State<FormPage> {
         address: addressController.text,
         website: websiteController.text,
       );
+      Provider.of<ContactProvider>(context,listen: false)
+      .insertContact(contacts)
+      .then((rowId){
+        if(rowId>0){
+          Navigator.pop(context);
+        }
+      });
     }
   }
 

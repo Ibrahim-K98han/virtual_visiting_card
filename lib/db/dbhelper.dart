@@ -1,6 +1,7 @@
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
-import 'package:virtual_visiting_card/db/contact_model.dart';
+
+import '../models/contact_model.dart';
 
 class DBHelper {
   final String _createTableContact = '''create table $tableContact(
@@ -41,5 +42,11 @@ class DBHelper {
         mapList[index],
       ),
     );
+  }
+
+  Future<int> deleteContact(int id) async {
+    final db = await _open();
+    return db
+        .delete(tableContact, where: '$tableContactId = ?', whereArgs: [id]);
   }
 }
