@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:virtual_visiting_card/models/contact_model.dart';
 import 'package:virtual_visiting_card/providers/contact_provider.dart';
 
+import '../utils/hepers.dart';
+
 class FormPage extends StatefulWidget {
   static const String routeName = '/form';
 
@@ -148,6 +150,7 @@ class _FormPageState extends State<FormPage> {
       .insertContact(contacts)
       .then((rowId){
         if(rowId>0){
+          showMsg(context,'Saved');
           Navigator.pop(context);
         }
       });
