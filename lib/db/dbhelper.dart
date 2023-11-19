@@ -44,6 +44,13 @@ class DBHelper {
     );
   }
 
+  Future<ContactModel> getContactById(int id) async {
+    final db = await _open();
+    final mapList = await db
+        .query(tableContact, where: '$tableContactId = ?', whereArgs: [id]);
+    return ContactModel.fromMap(mapList.first);
+  }
+
   Future<int> deleteContact(int id) async {
     final db = await _open();
     return db

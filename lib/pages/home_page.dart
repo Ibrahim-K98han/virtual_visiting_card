@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:virtual_visiting_card/pages/contact_details_page.dart';
 import 'package:virtual_visiting_card/pages/form_page.dart';
 import 'package:virtual_visiting_card/providers/contact_provider.dart';
 import 'package:virtual_visiting_card/utils/hepers.dart';
+
+import '../models/contact_model.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/';
@@ -89,10 +92,14 @@ class _HomePageState extends State<HomePage> {
                   },
                   key: UniqueKey(),
                   child: ListTile(
+                    onTap: () => Navigator.pushNamed(
+                        context, ContactDetailsPage.routeName,
+                        arguments: contact.id),
                     title: Text(contact.name),
                     trailing: IconButton(
                       onPressed: () {
-                        provider.updateContactField(contact);
+                        provider.updateContactField(
+                            contact, tableContactFavorite);
                       },
                       icon: Icon(contact.favorite
                           ? Icons.favorite
