@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ScanPage extends StatefulWidget {
   static const String routeName = '/scan';
+
   const ScanPage({Key? key}) : super(key: key);
 
   @override
@@ -9,8 +14,71 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+  bool isScanOver = false;
+  List<String> lines = [];
+  String name = '',
+      mobile = '',
+      email = '',
+      address = '',
+      company = '',
+      designation = '',
+      website = '',
+      image = '';
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Scan Page'),
+      ),
+      body: ListView(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton.icon(
+                onPressed: () {
+                  getImage(ImageSource.camera);
+                },
+                icon: const Icon(Icons.camera_alt),
+                label: const Text('Capture'),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  getImage(ImageSource.gallery);
+                },
+                icon: const Icon(Icons.photo),
+                label: const Text('Gallery'),
+              )
+            ],
+          ),
+          Wrap(
+            children: lines.map((line) => Chip(label: Text(line))).toList(),
+          )
+        ],
+      ),
+    );
+  }
+
+  void getImage(ImageSource source) async {
+    final xFile = await ImagePicker().pickImage(source: source);
+    if (xFile != null) {
+      image = xFile.path;
+      final textRecognizer =
+          TextRecognizer(script: TextRecognitionScript.latin);
+      final recognizedTex =
+          await textRecognizer.processImage(InputImage.fromFile(File(image)));
+      final tempList = <String>[];
+      for (var block in recognizedTex.blocks) {
+        for (var line in block.lines) {
+          tempList.add(line.text);
+        }
+      }
+      setState(() {
+        lines = tempList;
+        isScanOver = true;
+      });
+      print('Visiting Card =========>$lines');
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtual_visiting_card/pages/contact_details_page.dart';
 import 'package:virtual_visiting_card/pages/form_page.dart';
+import 'package:virtual_visiting_card/pages/scan_page.dart';
 import 'package:virtual_visiting_card/providers/contact_provider.dart';
 import 'package:virtual_visiting_card/utils/hepers.dart';
 
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushNamed(context, FormPage.routeName);
+            Navigator.pushNamed(context, ScanPage.routeName);
           },
           shape: const CircleBorder(),
           child: const Icon(Icons.add),
