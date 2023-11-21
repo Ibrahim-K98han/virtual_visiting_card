@@ -240,16 +240,22 @@ class _FormPageState extends State<FormPage> {
       body: Form(
         key: formKey,
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              padding: const EdgeInsets.only(top: 10.0),
               child: TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.person),
                   labelText: 'Contact Name(required)',
+                  labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
                   filled: true,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -262,6 +268,9 @@ class _FormPageState extends State<FormPage> {
                 },
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: TextFormField(
@@ -270,7 +279,13 @@ class _FormPageState extends State<FormPage> {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.call),
                   labelText: 'Mobile Number(required)',
+                  labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
                   filled: true,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -280,61 +295,91 @@ class _FormPageState extends State<FormPage> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                controller: emailController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.email),
-                  labelText: 'Email Address',
-                  filled: true,
-                ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.email),
+                labelText: 'Email Address',
+                labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: TextFormField(
-                controller: companyController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.label),
-                  labelText: 'Company Name',
-                  filled: true,
-                ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: companyController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.label),
+                labelText: 'Company Name',
+                labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: TextFormField(
-                controller: designationController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.label),
-                  labelText: 'Designation',
-                  filled: true,
-                ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: designationController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.label),
+                labelText: 'Designation',
+                labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: TextFormField(
-                controller: addressController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.location_city),
-                  labelText: 'Street Address',
-                  filled: true,
-                ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: addressController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.location_city),
+                labelText: 'Street Address',
+                labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: TextFormField(
-                keyboardType: TextInputType.url,
-                controller: websiteController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.web),
-                  labelText: 'Website',
-                  filled: true,
-                ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.url,
+              controller: websiteController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.web),
+                labelText: 'Website',
+                labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
               ),
             ),
           ],
