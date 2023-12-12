@@ -24,15 +24,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[200],
+        scaffoldBackgroundColor: Colors.blue[200],
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.blue.shade200,
           iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
           actionsIconTheme: Theme.of(context).iconTheme.copyWith(
-                color: Colors.white,
+                color: Colors.black,
               ),
           titleTextStyle: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 18,
           ),
         ),

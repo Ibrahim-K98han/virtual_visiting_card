@@ -174,10 +174,92 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact List'),
+        title: const Text(
+          'Contact List',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins',
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.blue.shade200,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue.shade200,
+              ),
+              child: const Column(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                    maxRadius: 45,
+                    child: Text(
+                      'V V C',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    'Virtual Visiting Card',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white),
+                child: const ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text(
+                    'All Contact',
+                    style: TextStyle(fontFamily: 'Poppins'),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white),
+                child: const ListTile(
+                  leading: Icon(Icons.favorite),
+                  title: Text(
+                    'Favorite',
+                    style: TextStyle(fontFamily: 'Poppins'),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
           Navigator.pushNamed(context, ScanPage.routeName);
         },
@@ -197,10 +279,15 @@ class _HomePageState extends State<HomePage> {
             _fetchData();
           },
           currentIndex: selectedIndex,
-          backgroundColor: Colors.blue.shade100,
-          items: const [
+          backgroundColor: Colors.white,
+          fixedColor: Colors.black,
+          items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'All Contacts'),
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.black,
+                ),
+                label: 'All Contacts'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Favorite Contacts'),
           ],
@@ -244,19 +331,37 @@ class _HomePageState extends State<HomePage> {
                   await provider.deleteContact(contact.id);
                   showMsg(context, 'Deleted');
                 },
-                child: ListTile(
-                  onTap: () => Navigator.pushNamed(
-                      context, ContactDetailsPage.routeName,
-                      arguments: contact.id),
-                  title: Text(contact.name),
-                  trailing: IconButton(
-                    onPressed: () {
-                      provider.updateContactField(
-                          contact, tableContactFavorite);
-                    },
-                    icon: Icon(contact.favorite
-                        ? Icons.favorite
-                        : Icons.favorite_border),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 2,
+                    child: ListTile(
+                      onTap: () => Navigator.pushNamed(
+                          context, ContactDetailsPage.routeName,
+                          arguments: contact.id),
+                      title: Text(
+                        contact.name,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
+                      ),
+                      subtitle: Text(
+                        contact.mobile,
+                        style: const TextStyle(
+                            color: Colors.black54, fontFamily: 'Poppins'),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          provider.updateContactField(
+                              contact, tableContactFavorite);
+                        },
+                        icon: Icon(
+                          contact.favorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               );

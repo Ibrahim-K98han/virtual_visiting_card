@@ -169,7 +169,13 @@ class _ContactDetailsPageState extends State<ContactDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Details'),
+        title: const Text(
+          'Details',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins',
+          ),
+        ),
       ),
       body: Consumer<ContactProvider>(
         builder: (context, provider, child) => FutureBuilder(
@@ -186,7 +192,20 @@ class _ContactDetailsPageState extends State<ContactDetailsPage> {
                     fit: BoxFit.cover,
                   ),
                   ListTile(
-                    title: Text(contact.name),
+                    title: Text(
+                      contact.name,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Divider(
+                      color: Colors.white,
+                      thickness: 1,
+                    ),
                   ),
                   ListTile(
                     title: Text(contact.mobile),
